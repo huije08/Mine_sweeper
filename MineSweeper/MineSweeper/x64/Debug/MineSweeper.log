@@ -1,0 +1,5 @@
+﻿  screen.cpp
+C:\Users\huije\OneDrive\바탕 화면\MineSweeper\screen.cpp(79,24): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\huije\OneDrive\바탕 화면\MineSweeper\screen.cpp(79,27): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\huije\OneDrive\바탕 화면\MineSweeper\screen.cpp(82,47): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+  MineSweeper.vcxproj -> C:\Users\huije\OneDrive\바탕 화면\MineSweeper\x64\Debug\MineSweeper.exe
