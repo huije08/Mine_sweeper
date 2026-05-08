@@ -22,6 +22,8 @@ int mine_board[SIZE][SIZE]{ 0 };
 // 숫자 칸
 int game_board[SIZE][SIZE]{ 0 };
 
+int count_board[SIZE][SIZE]{ 0 };
+
 // 깃발 위치
 int flag_board[SIZE][SIZE]{ 0 };
 
@@ -100,10 +102,11 @@ void drawBoard(int X, int Y)
 
             if (game_board[y][x]== 1)
             {
-                switch (mine_board[y][x])
+                switch (count_board[y][x])
                 {
                 case 0:
                     render(x * 2, y, "⒪"); 
+                    break;
                 case 1:
                     render(x * 2, y, "⑴");
                     break;
@@ -202,6 +205,10 @@ void drawOver()
 
 }
 
+void drawClear()
+{
+    render(0, 0, "Game Clear!");
+}
 
 void Set_mine(int size, int count)
 {
@@ -216,7 +223,7 @@ void Set_mine(int size, int count)
         if (mine_board[y][x] == 9)
             continue;
 
-        mine_board[y][x] = 9; // 💣 지뢰만 설치
+        mine_board[y][x] = 9;
         m++;
     }
 }
@@ -230,37 +237,54 @@ void reset_board()
             mine_board[i][k] = 0;
             game_board[i][k] = 0;
             flag_board[i][k] = 0;
+            count_board[i][k] = 0;
         }
     }
 }
 
-void calculateNumbers()
+int count_mine(int x, int y, int width, int height)
 {
-    int dx[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
-    int dy[8] = { -1,-1,-1,  0, 0,  1, 1, 1 };
+    int dx[8] = { -1,-1,-1, 0,0, 1,1,1 };
+    int dy[8] = { -1, 0, 1,-1,1,-1,0,1 };
 
-    for (int y = 0; y < SIZE; y++)
+    int count = 0;
+
+    for (int i = 0; i < 8; i++)
     {
-        for (int x = 0; x < SIZE; x++)
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+
+        // 맵 밖 체크
+        if (nx < 0 || ny < 0 || nx >= height || ny >= width)
         {
-            if (mine_board[y][x] == 9)
-                continue;
+            continue;
+        }
 
-            int count = 0;
+        if (mine_board[nx][ny] == 9)
+        {
+            count++;
+        }
+    }
 
-            for (int i = 0; i < 8; i++)
+    return count;
+}
+
+void make_number_map(int h, int w)
+{
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            // 지뢰면 그대로
+            if (mine_board[i][j] == 9)
             {
-                int nx = x + dx[i];
-                int ny = y + dy[i];
-
-                if (nx >= 0 && nx < SIZE && ny >= 0 && ny < SIZE)
-                {
-                    if (mine_board[ny][nx] == 9)
-                        count++;
-                }
+                count_board[i][j] = 9;
             }
-
-            mine_board[y][x] = count;
+            else
+            {
+                // 주변 지뢰 개수 계산
+                count_board[i][j] = count_mine(j, i, h, w);
+            }
         }
     }
 }

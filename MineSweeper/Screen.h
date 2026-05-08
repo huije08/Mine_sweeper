@@ -11,4 +11,6 @@ void drawMenu();
 void drawOver();
 void Set_mine(int size, int diff);
 void reset_board();
-void calculateNumbers();
+int count_mine(int x, int y, int width, int height);
+void make_number_map(int h, int w);
+void drawClear();

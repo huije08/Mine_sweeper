@@ -12,20 +12,22 @@
 
 #define SIZE 8
 extern int menuindex;
-// 지뢰 위치 
+
 extern int mine_board[SIZE][SIZE];
-
-// 숫자 칸
 extern int game_board[SIZE][SIZE];
-
-// 깃발 위치
 extern int flag_board[SIZE][SIZE];
+extern int count_board[SIZE][SIZE];
+
+int first = 1;
+
+int cellcount = 100;
 
 enum State
 {
     START,
     GAME,
-    OVER
+    OVER,
+    CLEAR
 };
 
 enum Difficulty
@@ -109,7 +111,6 @@ int main()
             case ENTER:
                 if (gameState == START)
                 {
-
                     if (menuindex == 1)
                     {
                         exit(0);
@@ -119,7 +120,7 @@ int main()
                         reset_board();
                         gameState = GAME;
                         Set_mine(SIZE, EASY);
-                        calculateNumbers();
+                        make_number_map(SIZE, SIZE);
                     }
                 }
                 else if (gameState == GAME)
@@ -127,6 +128,10 @@ int main()
                     if (mine_board[y][x/2] == 9)
                     {
                         gameState = OVER;
+                    }
+                    else if (cellcount<=0)
+                    {
+                        gameState = CLEAR;
                     }
                     else
                     {
@@ -176,6 +181,10 @@ int main()
         else if (gameState == OVER)
         {
             drawOver();
+        }
+        else if (gameState == CLEAR)
+        {
+            drawClear();
         }
     }
 
