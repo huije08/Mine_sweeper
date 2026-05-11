@@ -20,8 +20,6 @@ extern int count_board[SIZE][SIZE];
 
 int first = 1;
 
-int cellcount = 100;
-
 enum State
 {
     START,
@@ -36,6 +34,8 @@ enum Difficulty
     NORMAL=25,
     HARD=60
 };
+
+int cellcount;
 
 int main()
 {
@@ -88,7 +88,7 @@ int main()
                 break;
 
             case LEFT:
-                if (gameState == START || gameState == OVER)
+                if (gameState == START || gameState == OVER || gameState == CLEAR)
                 {
                     menuindex = 1 - menuindex;
                 }
@@ -99,7 +99,7 @@ int main()
                 break;
 
             case RIGHT:
-                if (gameState == START || gameState == OVER)
+                if (gameState == START || gameState == OVER || gameState == CLEAR)
                 {
                     menuindex = 1 - menuindex;
                 }
@@ -121,10 +121,12 @@ int main()
                         gameState = GAME;
                         Set_mine(SIZE, EASY);
                         make_number_map(SIZE, SIZE);
+                        cellcount = 100 - EASY;
                     }
                 }
                 else if (gameState == GAME)
                 {
+                    cellcount--;
                     if (mine_board[y][x/2] == 9)
                     {
                         gameState = OVER;
@@ -141,6 +143,17 @@ int main()
                 else if (gameState == OVER)
                 {
                     if(menuindex == 1)
+                    {
+                        exit(0);
+                    }
+                    else if (menuindex == 0)
+                    {
+                        gameState = START;
+                    }
+                }
+                else if (gameState == CLEAR)
+                {
+                    if (menuindex == 1)
                     {
                         exit(0);
                     }

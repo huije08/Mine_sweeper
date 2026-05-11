@@ -2,13 +2,11 @@
 C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\screen.cpp(81,24): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
 C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\screen.cpp(81,27): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
 C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\screen.cpp(84,47): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
-  source.cpp
-C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\source.cpp(42,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\source.cpp(58,9): warning C4101: 'current_mine': unreferenced local variable
-C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\source.cpp(57,9): warning C4101: 'time': unreferenced local variable
+C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\screen.cpp(214,18): warning C4129: '_': unrecognized character escape sequence
+C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\screen.cpp(214,18): warning C4129: ' ': unrecognized character escape sequence
   Generating code
-  4 of 15 functions (26.7%) were compiled, the rest were copied from previous compilation.
+  1 of 15 functions ( 6.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   MineSweeper.vcxproj -> C:\Users\huije\OneDrive\바탕 화면\Mine_sweeper\MineSweeper\x64\Release\MineSweeper.exe

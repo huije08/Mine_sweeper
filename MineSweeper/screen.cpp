@@ -167,15 +167,17 @@ void drawMenu()
     render(0, 7, " ___) \\ V  V /| |___| |___| |_) | |___|  _ < ");
     render(0, 8, "|____/ \\_/\\_/ |_____|_____| .__/|_____|_| \\_\\");
     render(0, 9, "                          |_|                ");
+
+    render(3, 13, "move:↑↓→← / open:ENTER / flag:F");
     if (menuindex == 0)
     {
         render(10, 11, "> START");
-        render(19, 11, "  EXIT");
+        render(19, 11, "  QUIT");
     }
     else if (menuindex == 1)
     {
         render(10, 11, "  START");
-        render(19, 11, "> EXIT");
+        render(19, 11, "> QUIT");
     }
 
 }
@@ -195,19 +197,33 @@ void drawOver()
     if (menuindex == 0)
     {
         render(10, 10, "> RETRY");
-        render(19, 10, "  EXIT");
+        render(19, 10, "  QUIT");
     }
     else if (menuindex == 1)
     {
         render(10, 10, "  RETRY");
-        render(19, 10, "> EXIT");
+        render(19, 10, "> QUIT");
     }
 
 }
 
 void drawClear()
 {
-    render(0, 0, "Game Clear!");
+    render(0, 0, " ______     __         ______     ______     ______ ");
+    render(0, 1, "/\\  ___\\   /\\ \\       /\\  ___\\   /\\  __ \\   /\\  == \\   ");
+    render(0, 2, "\\ \\ \____  \\ \\ \\____  \\ \\  __\   \\ \\  __ \\  \\ \\  __<   ");
+    render(0, 3, " \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\ ");
+    render(0, 4, "  \\/_____/   \\/_____/   \\/_____/   \\/_/\\/_/   \\/_/ /_/ ");
+    if (menuindex == 0)
+    {
+        render(10, 6, "> MAIN");
+        render(19, 6, "  QUIT");
+    }
+    else if (menuindex == 1)
+    {
+        render(10, 6, "  MAIN");
+        render(19, 6, "> QUIT");
+    }
 }
 
 void Set_mine(int size, int count)
@@ -260,7 +276,7 @@ int count_mine(int x, int y, int width, int height)
             continue;
         }
 
-        if (mine_board[nx][ny] == 9)
+        if (mine_board[ny][nx] == 9)
         {
             count++;
         }
